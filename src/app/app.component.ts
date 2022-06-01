@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from './modules/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DashboardApp';
+
+  isLogged: boolean = false;
+  username: string = "";
+
+  constructor(public authService: AuthService,
+    // public loaderService: LoaderService,
+    public router: Router)
+  {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd)
+        if (!val.url.includes("auth")) {
+          this.isLogged = true;
+          this.username = authService.getUsername() ?? "";
+        } else {
+          this.isLogged = false;
+        }
+    });
+  }
+
+  ngOnInit() {
+    this.isLogged = this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }
