@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -26,14 +26,18 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.validateForm.valid) {
       const val = this.validateForm.value;
-
+      let s: string[] = [];
+      s.find(s => s == "Administrator")
       if (val.username && val.password) {
         this.authService.login(val.username, val.password)
           .subscribe(
             (res: any) => {
-              console.log(res);
-              this.authService.setSession(res.token, res.expiration, res.id, res.username);
-              this.router.navigateByUrl('/home');
+              if (res.roles.find((r: string) => r == "Administrator")) {
+                this.authService.setSession(res.token, res.expiration, res.id, res.username);
+                this.router.navigateByUrl('/home');
+              } else {
+                alert('This user does not have an Admin role');
+              }
             }
           );
       }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './modules/auth/auth.service';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,12 @@ import { AuthService } from './modules/auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'DashboardApp';
 
   isLogged: boolean = false;
   username: string = "";
 
   constructor(public authService: AuthService,
-    // public loaderService: LoaderService,
+    public loaderService: LoaderService,
     public router: Router)
   {
     router.events.subscribe((val) => {
