@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, retry, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, retry } from 'rxjs';
 import { isBefore } from 'date-fns';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private apiURL = 'https://localhost:7123/api/v1/Authenticate/';
+export class AuthService extends ApiService {
   
   static TOKEN_KEY: string = "token";
   static EXPIRATION: string = "expires_at";
   static USER_ID: string = "user_id";
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
    
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) {
+    super();
+    this.apiURL = this.apiURL + 'Authenticate/';
+  }
 
   login(username: string, password: string) {
     return this.http.post(
@@ -70,20 +67,5 @@ export class AuthService {
 
   getUsername() {
     return localStorage.getItem(AuthService.USER_ID)?.split(' ')[1];
-  }
-
-  handleError(error: any) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(() => {
-      return errorMessage;
-    });
   }
 }

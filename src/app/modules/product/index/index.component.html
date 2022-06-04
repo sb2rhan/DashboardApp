@@ -1,1 +1,23 @@
 <h1>Hello</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Product</th>
+            <th scope="col" sortable="description" (sort)="onSort($event)">Description</th>
+            <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+            <th scope="col" sortable="stockAmount" (sort)="onSort($event)">Stock Amount</th>
+            <th scope="col" sortable="discountRate" (sort)="onSort($event)">Discount Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <th scope="row">{{ p.id }}</th>
+            <td>{{ p.name }}</td>
+            <td>{{ p.description }}</td>
+            <td>{{ p.price | number }}</td>
+            <td>{{ p.stockAmount | number }}</td>
+            <td>{{ p.discountRate | number }}</td>
+        </tr>
+    </tbody>
+</table>

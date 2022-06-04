@@ -1,4 +1,4 @@
-<header *ngIf="isLogged" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<header *ngIf="isLoggedIn" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">StoreSystem</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +14,14 @@
 <!-- Loader -->
 <div *ngIf="loaderService.isLoading | async" class="spinner-wrapper">
     <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
+        <span class="visually-hidden">Loading...</span>
     </div>
 </div>
 
+
 <div class="inner-content container-fluid">
     <div class="row">
-        <nav *ngIf="isLogged" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+        <nav *ngIf="isLoggedIn" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">

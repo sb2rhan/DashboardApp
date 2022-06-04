@@ -10,7 +10,7 @@ import { LoaderService } from './services/loader.service';
 })
 export class AppComponent {
 
-  isLogged: boolean = false;
+  isLoggedIn: boolean = false;
   username: string = "";
 
   constructor(public authService: AuthService,
@@ -20,16 +20,16 @@ export class AppComponent {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd)
         if (!val.url.includes("auth")) {
-          this.isLogged = true;
+          this.isLoggedIn = true;
           this.username = authService.getUsername() ?? "";
         } else {
-          this.isLogged = false;
+          this.isLoggedIn = false;
         }
     });
   }
 
   ngOnInit() {
-    this.isLogged = this.authService.isLoggedIn();
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
 
   logout() {
