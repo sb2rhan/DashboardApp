@@ -21,6 +21,12 @@ export class ProductService extends ApiService {
     this.apiURL = this.apiURL + 'Products/';
   }
 
+  createProduct(product: Product): Observable<Product> {
+    return this.http
+      .post<Product>(this.apiURL, JSON.stringify(product), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError))
+  }
+
   getProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(this.apiURL, this.httpOptions)
@@ -33,11 +39,17 @@ export class ProductService extends ApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  updateProduct(id: string, newProd: Product) {
+  updateProduct(id: string, product: Product): Observable<Product> {
     return this.http
       .put<Product>(
-        this.apiURL + id, JSON.stringify(newProd), this.httpOptions
+        this.apiURL + id, JSON.stringify(product), this.httpOptions
       )
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  deleteProduct(id: string): Observable<Product> {
+    return this.http
+      .delete<Product>(this.apiURL + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
 }

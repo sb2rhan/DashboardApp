@@ -25,7 +25,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerLink="/home">
+                        <a class="nav-link" [ngClass]="{'active': currentRoute == '/home' }" aria-current="page" routerLink="/home">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/products">
+                        <a class="nav-link" [ngClass]="{'active': currentRoute == '/products' }" routerLink="/products">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-shopping-cart" aria-hidden="true">
@@ -80,4 +80,6 @@
     </div>
 </div>
 
-<footer>StoreSystem ©2022</footer>
+<footer class="py-4 bg-dark">
+    <p class="text-center text-white m-3">© 2022 StoreSystem</p>
+</footer>

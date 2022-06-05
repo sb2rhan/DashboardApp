@@ -12,19 +12,22 @@ export class AppComponent {
 
   isLoggedIn: boolean = false;
   username: string = "";
+  currentRoute: string = '/home';
 
   constructor(public authService: AuthService,
     public loaderService: LoaderService,
-    public router: Router)
-  {
+    public router: Router) {
     router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd)
+      if (val instanceof NavigationEnd) {
+        this.currentRoute = val.url;
         if (!val.url.includes("auth")) {
           this.isLoggedIn = true;
           this.username = authService.getUsername() ?? "";
         } else {
           this.isLoggedIn = false;
         }
+      }
+
     });
   }
 
