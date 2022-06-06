@@ -3,7 +3,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
+    <form id="editForm" [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
         <div class="form-group">
             <label>Barcode</label>
             <input type="text" formControlName="barcode" class="form-control" required>
@@ -18,7 +18,7 @@
             </textarea>
         </div>
         <div class="form-group">
-            <label>Price</label>
+            <label>Price(₸)</label>
             <input type="number" formControlName="price" class="form-control" required>
         </div>
         <div class="form-group">
@@ -26,13 +26,29 @@
             <input type="number" formControlName="stockAmount" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Discount</label>
-            <input type="number" formControlName="discount" class="form-control" required>
+            <label>Discount Rate</label>
+            <input type="number" formControlName="discountRate" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <select formControlName="categoryId" class="form-select" aria-label="Category select">
+                <option *ngFor="let c of categories" [ngValue]="c.id">
+                    {{ c.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Supplier</label>
+            <select formControlName="supplierId" class="form-select" aria-label="Category select">
+                <option *ngFor="let s of suppliers" [ngValue]="s.id">
+                    {{ s.name }}
+                </option>
+            </select>
         </div>
     </form>
 
 </div>
 <div class="modal-footer">
+    <input type="submit" class="btn btn-info" form="editForm" value="Edit">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    <input type="submit" class="btn btn-info" value="Edit">
 </div>

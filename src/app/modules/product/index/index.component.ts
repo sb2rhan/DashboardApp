@@ -21,12 +21,14 @@ export class IndexComponent implements OnInit {
   @ViewChildren(SortableDirective) headers!: QueryList<SortableDirective>;
 
   constructor(private productService: ProductService, private modalService: NgbModal) {
-    if (!this.products.length) {
-      this.productService.getProducts()
-        .subscribe((res: Product[]) => {
-          this.products = res;
-        })
-    }
+    this.refreshProducts();
+  }
+
+  refreshProducts() {
+    this.productService.getProducts()
+      .subscribe((res: Product[]) => {
+        this.products = res;
+      })
   }
 
   ngOnInit(): void {
@@ -46,7 +48,7 @@ export class IndexComponent implements OnInit {
         header.direction = '';
       }
     });
-    
+
     if (direction !== '') {
       this.products = [...this.products].sort((a, b) => {
         const res = compare(a[column], b[column]);
@@ -57,7 +59,11 @@ export class IndexComponent implements OnInit {
 
   openModal(operation: string, product?: Product) {
     if (operation === 'create') {
-      this.modalService.open(CreateComponent);
+      this.modalService.open(CreateComponent)
+        .closed
+        .subscribe(res => {
+          this.refreshProducts();
+        })
     } else if (operation === 'edit') {
       const modalRef = this.modalService.open(EditComponent);
       modalRef.componentInstance.product = product;

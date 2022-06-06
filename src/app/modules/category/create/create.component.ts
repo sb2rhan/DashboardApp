@@ -29,6 +29,13 @@ export class CreateComponent implements OnInit {
         .subscribe(res => {
           this.activeModal.close('Category created');
         })
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
     }
   }
 
