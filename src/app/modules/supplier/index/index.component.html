@@ -1,0 +1,25 @@
+<h1>Suppliers</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">New Supplier</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Supplier</th>
+            <th scope="col" sortable="address" (sort)="onSort($event)">Address</th>
+            <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">Phone Number</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of suppliers">
+            <th scope="row">{{ s.id }}</th>
+            <td>{{ s.name }}</td>
+            <td>{{ s.address }}</td>
+            <td>{{ s.phoneNumber }}</td>
+            <td>
+                <button class="btn btn-primary" (click)="openModal('edit', s)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteSupplier(s.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

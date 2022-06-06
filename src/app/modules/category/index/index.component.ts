@@ -42,14 +42,12 @@ export class IndexComponent implements OnInit {
 
   onSort({ column, direction }: SortEvent) {
 
-    // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {
         header.direction = '';
       }
     });
 
-    // sorting countries
     if (direction !== '') {
       this.categories = [...this.categories].sort((a, b) => {
         const res = compare(a[column], b[column]);

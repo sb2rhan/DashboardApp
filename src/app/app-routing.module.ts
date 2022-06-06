@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'categories', loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule),
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'suppliers', loadChildren: () => import('./modules/supplier/supplier.module').then(m => m.SupplierModule),
+    canActivate: [AuthGuardService]
+  },
   { path: '**', redirectTo: '/home' }
 ];
 

@@ -2,10 +2,9 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateComponent } from '../create/create.component';
 import { EditComponent } from '../edit/edit.component';
-import { Product } from '../entities/product';
-import { ProductService } from '../product.service';
+import { Supplier } from '../entities/supplier';
 import { SortableDirective, SortEvent } from '../sortable.directive';
-import { ViewComponent } from '../view/view.component';
+import { SupplierService } from '../supplier.service';
 
 const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
@@ -15,56 +14,56 @@ const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-
-  products: Product[] = [];
+  suppliers: Supplier[] = [];
 
   @ViewChildren(SortableDirective) headers!: QueryList<SortableDirective>;
 
-  constructor(private productService: ProductService, private modalService: NgbModal) {
-    if (!this.products.length) {
-      this.productService.getProducts()
-        .subscribe((res: Product[]) => {
-          this.products = res;
-        })
-    }
+  constructor(private supplierService: SupplierService, private modalService: NgbModal) {
+    this.refreshSuppliers()
+  }
+
+  refreshSuppliers() {
+    this.supplierService.getSuppliers()
+      .subscribe((res: Supplier[]) => {
+        this.suppliers = res;
+      })
   }
 
   ngOnInit(): void {
   }
 
-  deleteProduct(id: string) {
-    this.productService.deleteProduct(id)
+  deleteSupplier(id: string) {
+    this.supplierService.deleteSupplier(id)
       .subscribe(res => {
-        this.products = this.products.filter(p => p.id !== id);
+        this.suppliers = this.suppliers.filter(p => p.id !== id);
       })
   }
 
   onSort({ column, direction }: SortEvent) {
-
     this.headers.forEach(header => {
       if (header.sortable !== column) {
         header.direction = '';
       }
     });
-    
+
     if (direction !== '') {
-      this.products = [...this.products].sort((a, b) => {
+      this.suppliers = [...this.suppliers].sort((a, b) => {
         const res = compare(a[column], b[column]);
         return direction === 'asc' ? res : -res;
       });
     }
   }
 
-  openModal(operation: string, product?: Product) {
+  openModal(operation: string, supplier?: Supplier) {
     if (operation === 'create') {
-      this.modalService.open(CreateComponent);
+      this.modalService.open(CreateComponent)
+        .closed
+        .subscribe(res => {
+          this.refreshSuppliers();
+        })
     } else if (operation === 'edit') {
       const modalRef = this.modalService.open(EditComponent);
-      modalRef.componentInstance.product = product;
-    } else if (operation === 'view') {
-      const modalRef = this.modalService.open(ViewComponent);
-      modalRef.componentInstance.product = product;
+      modalRef.componentInstance.supplier = supplier;
     }
   }
-
 }
