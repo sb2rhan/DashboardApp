@@ -3,37 +3,36 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-    <form>
+    <form [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
         <div class="form-group">
             <label>Barcode</label>
-            <input type="text" value="{{ product.barcode }}" class="form-control" required>
+            <input type="text" formControlName="barcode" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Name</label>
-            <input type="text" value="{{ product.name }}" class="form-control" required>
+            <input type="text" formControlName="name" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Description</label>
-            <textarea class="form-control" required>
-                {{ product.description }}
+            <textarea class="form-control" formControlName="description" required>
             </textarea>
         </div>
         <div class="form-group">
             <label>Price</label>
-            <input type="number" value="{{ product.price }}" class="form-control" required>
+            <input type="number" formControlName="price" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Stock Amount</label>
-            <input type="number" value="{{ product.stockAmount }}" class="form-control" required>
+            <input type="number" formControlName="stockAmount" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Discount</label>
-            <input type="number" value="{{ product.discountRate }}" class="form-control" required>
+            <input type="number" formControlName="discount" class="form-control" required>
         </div>
     </form>
 
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    <input type="submit" class="btn btn-info" value="Save">
+    <input type="submit" class="btn btn-info" value="Edit">
 </div>

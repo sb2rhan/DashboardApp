@@ -1,11 +1,10 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryService } from '../category.service';
 import { CreateComponent } from '../create/create.component';
 import { EditComponent } from '../edit/edit.component';
-import { Product } from '../entities/product';
-import { ProductService } from '../product.service';
+import { Category } from '../entities/category';
 import { SortableDirective, SortEvent } from '../sortable.directive';
-import { ViewComponent } from '../view/view.component';
 
 const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
@@ -16,26 +15,28 @@ const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 
 })
 export class IndexComponent implements OnInit {
 
-  products: Product[] = [];
+  categories: Category[] = [];
 
   @ViewChildren(SortableDirective) headers!: QueryList<SortableDirective>;
 
-  constructor(private productService: ProductService, private modalService: NgbModal) {
-    if (!this.products.length) {
-      this.productService.getProducts()
-        .subscribe((res: Product[]) => {
-          this.products = res;
-        })
-    }
+  constructor(private categoryService: CategoryService, private modalService: NgbModal) {
+    this.refreshCategories()
+  }
+
+  refreshCategories() {
+    this.categoryService.getCategories()
+      .subscribe((res: Category[]) => {
+        this.categories = res;
+      })
   }
 
   ngOnInit(): void {
   }
 
-  deleteProduct(id: string) {
-    this.productService.deleteProduct(id)
+  deleteCategory(id: string) {
+    this.categoryService.deleteCategory(id)
       .subscribe(res => {
-        this.products = this.products.filter(p => p.id !== id);
+        this.categories = this.categories.filter(p => p.id !== id);
       })
   }
 
@@ -50,22 +51,23 @@ export class IndexComponent implements OnInit {
 
     // sorting countries
     if (direction !== '') {
-      this.products = [...this.products].sort((a, b) => {
+      this.categories = [...this.categories].sort((a, b) => {
         const res = compare(a[column], b[column]);
         return direction === 'asc' ? res : -res;
       });
     }
   }
 
-  openModal(operation: string, product?: Product) {
+  openModal(operation: string, category?: Category) {
     if (operation === 'create') {
-      this.modalService.open(CreateComponent);
+      this.modalService.open(CreateComponent)
+        .closed
+        .subscribe(res => {
+          this.refreshCategories();
+        })
     } else if (operation === 'edit') {
       const modalRef = this.modalService.open(EditComponent);
-      modalRef.componentInstance.product = product;
-    } else if (operation === 'view') {
-      const modalRef = this.modalService.open(ViewComponent);
-      modalRef.componentInstance.product = product;
+      modalRef.componentInstance.category = category;
     }
   }
 

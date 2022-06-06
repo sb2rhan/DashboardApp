@@ -1,0 +1,21 @@
+<h1>Categories</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">New Category</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Category</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of categories">
+            <th scope="row">{{ c.id }}</th>
+            <td>{{ c.name }}</td>
+            <td>
+                <button class="btn btn-primary" (click)="openModal('edit', c)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteCategory(c.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
