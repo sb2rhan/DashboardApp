@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title">User {{ user.userName }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body card mb-3">
+    <div class="row g-0">
+        <div class="col-md-12">
+            <div class="card-body">
+                <p class="card-text text-wrap">
+                    Full Name: {{ [user.firstName, user.middleName, user.lastName].join(' ') }}
+                </p>
+                <p class="card-text">
+                    Email: {{ user.email }}
+                </p>
+                <p class="card-text">
+                    Phone number: {{ user.phoneNumber }}
+                </p>
+                <p class="card-text">Bank Card: {{ user.bankCard }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

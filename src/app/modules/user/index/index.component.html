@@ -1,0 +1,28 @@
+<h1>Users</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">New User</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" sortable="userName" (sort)="onSort($event)">User</th>
+            <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+            <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">Phone number</th>
+            <th scope="col" sortable="birthDate" (sort)="onSort($event)">Birth Date</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users">
+            <th scope="row">{{ u.id }}</th>
+            <td>{{ u.userName }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.phoneNumber }}</td>
+            <td>{{ u.birthDate | date }}</td>
+            <td>
+                <button class="btn btn-info" (click)="openModal('view', u)">View</button>
+                <button class="btn btn-primary" (click)="openModal('edit', u)">Edit</button>
+                <button type="button" (click)="deleteUser(u.id)" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
