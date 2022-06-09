@@ -11,3 +11,7 @@ export class User {
         public birthDate: string,
         public bankCard: string) { }
 }
+
+export class RegisterUser {
+    public constructor(public username: string, public email: string, public password: string) {}
+}

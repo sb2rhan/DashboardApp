@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { BonusCardService } from '../../bonus-card/bonus-card.service';
-import { BonusCard } from '../../bonus-card/entities/bonus-card';
-import { User } from '../entities/user';
+import { RegisterUser } from '../entities/user';
+import { UserType } from '../entities/user-type';
 import { UserService } from '../user.service';
 
 @Component({
@@ -15,40 +14,27 @@ export class CreateComponent implements OnInit {
 
   validateForm!: FormGroup;
 
-  bonusCards!: BonusCard[];
+  public userTypes = Object.values(UserType)
 
   constructor(public activeModal: NgbActiveModal,
     private userService: UserService,
-    private bonusCardService: BonusCardService,
     private fb: FormBuilder)
   {
-    this.bonusCardService
-      .getBonusCards().subscribe(
-        res => this.bonusCards = res
-      );
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: ['', [Validators.required]],
-      passwordHash: ['', [Validators.required]],
-      firstName: ['', [Validators.nullValidator]],
-      middleName: ['', [Validators.nullValidator]],
-      lastName: ['', [Validators.nullValidator]],
-      birthDate: ['', [Validators.nullValidator]],
-      email: ['', [Validators.nullValidator]],
-      phoneNumber: ['', [Validators.nullValidator]],
-      bankCard: ['', [Validators.nullValidator]]
+      userType: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
   create() {
     if (this.validateForm.valid) {
       const form = this.validateForm.value;
-      this.userService.createUser(
-        new User(form.userName, form.passwordHash, form.email, form.phoneNumber, form.firstName,
-          form.middleName, form.lastName, form.birthDate, form.bankCard)
-      )
+      this.userService.createUser(form.userType, new RegisterUser(form.username, form.email, form.password))
         .subscribe(res => {
           this.activeModal.close('User created');
         })
