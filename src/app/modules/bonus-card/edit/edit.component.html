@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit Bonus Card</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form id="editForm" [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
+        <div class="form-group">
+            <div class="form-check form-switch">
+                <input class="form-check-input" formControlName="isActive" type="checkbox" id="isActiveSwitch">
+                <label class="form-check-label" for="isActiveSwitch">Is active</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Owner</label>
+            <select formControlName="ownerId" class="form-select" aria-label="Owner select">
+                <option *ngFor="let u of users" [ngValue]="u.id">
+                    {{ u.firstName }} {{ u.lastName }} ({{ u.email }})
+                </option>
+            </select>
+        </div>
+    </form>
+
+</div>
+<div class="modal-footer">
+    <input type="submit" class="btn btn-info" form="editForm" value="Edit">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

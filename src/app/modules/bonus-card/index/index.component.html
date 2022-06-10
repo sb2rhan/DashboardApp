@@ -1,0 +1,23 @@
+<h1>Bonus Cards</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">New Bonus Card</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Bonus Card</th>
+            <th scope="col" sortable="isActive" (sort)="onSort($event)">Is Active</th>
+            <th scope="col" sortable="issueDate" (sort)="onSort($event)">Issue Date</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bc of bonusCards">
+            <th scope="row">{{ bc.id }}</th>
+            <td>{{ bc.isActive }}</td>
+            <td>{{ bc.issueDate | date }}</td>
+            <td>
+                <button class="btn btn-primary" (click)="openModal('edit', bc)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteBonusCard(bc.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
