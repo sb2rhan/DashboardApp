@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorService } from './services/interceptor.service';
+import { UserShortPipe } from './pipes/user-short.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { InterceptorService } from './services/interceptor.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    UserShortPipe
   ],
   bootstrap: [AppComponent]
 })
