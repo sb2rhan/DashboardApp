@@ -1,5 +1,7 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChartDataset } from 'chart.js';
 import { EditComponent } from '../edit/edit.component';
 import { Purchase } from '../entities/purchase';
 import { PurchaseService } from '../purchase.service';
@@ -17,6 +19,11 @@ export class HomeComponent implements OnInit {
 
   purchases: Purchase[] = [];
 
+  // For report dashboard
+  purchaseDates: string[] = [];
+  purchaseTotals: ChartDataset[] = [];
+  // --------------------
+
   @ViewChildren(SortableDirective) headers!: QueryList<SortableDirective>;
 
   constructor(private purchaseService: PurchaseService, private modalService: NgbModal) {
@@ -27,6 +34,15 @@ export class HomeComponent implements OnInit {
     this.purchaseService.getPurchases()
       .subscribe((res: Purchase[]) => {
         this.purchases = res;
+        // for report dashboard
+        this.purchaseDates = res.map(p => formatDate(p.purchaseDate, 'dd/MM/yyyy', 'en-US'));
+        let purchaseCashTotals = res.map(p => (p.purchaseType === "CASH") ? p.total : 0);
+        let purchaseCardTotals = res.map(p => (p.purchaseType === "CARD") ? p.total : 0);
+        this.purchaseTotals = [
+          {data: [...purchaseCashTotals], label: 'Cash'}, // cash total
+          {data: [...purchaseCardTotals], label: 'Card'}  // card total
+        ];
+
       })
   }
 
