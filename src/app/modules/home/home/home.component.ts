@@ -35,9 +35,33 @@ export class HomeComponent implements OnInit {
       .subscribe((res: Purchase[]) => {
         this.purchases = res;
         // for report dashboard
-        this.purchaseDates = res.map(p => formatDate(p.purchaseDate, 'dd/MM/yyyy', 'en-US'));
-        let purchaseCashTotals = res.map(p => (p.purchaseType === "CASH") ? p.total : 0);
-        let purchaseCardTotals = res.map(p => (p.purchaseType === "CARD") ? p.total : 0);
+        this.purchaseDates = [...new Set(res.map(p => formatDate(p.purchaseDate, 'dd/MM/yyyy', 'en-US')))];
+        
+        let purchasesGroupedByDate = res.reduce((r, p) => {
+          let purch = Object.assign({}, p)
+          purch.purchaseDate = formatDate(purch.purchaseDate, 'dd/MM/yyyy', 'en-US');
+          r[purch.purchaseDate] = r[purch.purchaseDate] || [];
+          r[purch.purchaseDate].push(purch);
+          return r;
+        }, Object.create(null));
+
+        let purchaseCashTotals:number[] = [];
+        let purchaseCardTotals:number[] = [];
+
+        this.purchaseDates.forEach(date => {
+          let cashPurchases: number[] = purchasesGroupedByDate[date].filter(
+            (p: Purchase) => p.purchaseType === "CASH").map((p: Purchase) => p.total);
+          let cashTotal = (cashPurchases.length == 0) ? 0 : cashPurchases.reduce((r, p) => r + p);
+          let cardPurchases: number[] = purchasesGroupedByDate[date].filter(
+            (p: Purchase) => p.purchaseType === "CARD").map((p: Purchase) => p.total);
+          let cardTotal = (cardPurchases.length == 0) ? 0 : cardPurchases.reduce((r, p) => r + p);
+          
+          purchasesGroupedByDate[date] = [cashTotal, cardTotal];
+          purchaseCashTotals.push(purchasesGroupedByDate[date][0]);
+          purchaseCardTotals.push(purchasesGroupedByDate[date][1]);
+        });
+        // console.log(purchasesGroupedByDate);
+        
         this.purchaseTotals = [
           {data: [...purchaseCashTotals], label: 'Cash'}, // cash total
           {data: [...purchaseCardTotals], label: 'Card'}  // card total
