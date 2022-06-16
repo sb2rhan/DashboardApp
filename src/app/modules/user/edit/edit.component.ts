@@ -17,7 +17,6 @@ export class EditComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal,
     private userService: UserService,
     private fb: FormBuilder) {
-
   }
 
   ngOnInit(): void {
@@ -27,7 +26,7 @@ export class EditComponent implements OnInit {
       firstName: [this.user.firstName, [Validators.nullValidator]],
       middleName: [this.user.middleName, [Validators.nullValidator]],
       lastName: [this.user.lastName, [Validators.nullValidator]],
-      birthDate: [this.user.birthDate, [Validators.nullValidator]],
+      birthDate: [this.user.birthDate?.substring(0, 16), [Validators.nullValidator]],
       email: [this.user.email, [Validators.required]],
       phoneNumber: [this.user.phoneNumber, [Validators.nullValidator]],
       bankCard: [this.user.bankCard, [Validators.nullValidator]]
@@ -35,7 +34,6 @@ export class EditComponent implements OnInit {
   }
 
   edit() {
-    debugger
     if (this.validateForm.valid) {
       const form = this.validateForm.value;
       this.user.userName = form.userName;

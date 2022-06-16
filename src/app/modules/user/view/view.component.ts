@@ -11,9 +11,15 @@ export class ViewComponent implements OnInit {
   
   @Input() user!: User;
 
+  fullName: string = "none";
+
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
+    let name = [this.user.firstName, this.user.middleName, this.user.lastName].join(' ');
+    if (name.trim().length) {
+      this.fullName = name;
+    }
   }
 
 }

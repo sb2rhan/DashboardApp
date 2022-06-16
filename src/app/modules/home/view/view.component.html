@@ -11,8 +11,11 @@
                     Total: {{ purchase.total }} with tax rate of {{ purchase.taxRate * 100 }}%
                 </p>
                 <p class="card-text">
-                    Date of purchase: {{ purchase.purchaseDate }},
-                    Paid by: {{ purchase.purchaseType }}
+                    Date of purchase: {{ purchase.purchaseDate | date }}
+                </p>
+                <p class="card-text">
+                    Used Bonus card: {{ purchase.bonusCardId ? purchase.bonusCardId : 'none' }}, 
+                    Method of payment: {{ purchase.purchaseType }}
                 </p>
                 <p class="card-text text-bold">Cashier: {{ user | userShort }}</p>
             </div>

@@ -1,1 +1,50 @@
-<p>edit works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Edit Purchase</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form id="editForm" [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
+        <div class="form-group">
+            <label>Total</label>
+            <input type="number" min="0" formControlName="total" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Purchase Date</label>
+            <input type="datetime-local" formControlName="purchaseDate" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Purchase Type</label>
+            <select formControlName="purchaseType" class="form-select" aria-label="Purchase Type select">
+                <option *ngFor="let p of purchaseTypes" [ngValue]="p">
+                    {{ p }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Tax Rate</label>
+            <input type="number" step="0.01" min="0" max="0.5" formControlName="taxRate" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Cashier</label>
+            <select formControlName="cashierId" class="form-select" aria-label="Category select">
+                <option *ngFor="let c of cashiers" [ngValue]="c.id">
+                    {{ c | userShort }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Bonus Cards</label>
+            <select formControlName="bonusCardId" class="form-select" aria-label="Category select">
+                <option value="">None</option>
+                <option *ngFor="let bc of bonusCards" [ngValue]="bc.id">
+                    {{ bc.id }}
+                </option>
+            </select>
+        </div>
+    </form>
+
+</div>
+<div class="modal-footer">
+    <input type="submit" class="btn btn-info" form="editForm" value="Edit">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

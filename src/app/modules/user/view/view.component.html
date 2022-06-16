@@ -7,15 +7,18 @@
         <div class="col-md-12">
             <div class="card-body">
                 <p class="card-text text-wrap">
-                    Full Name: {{ [user.firstName, user.middleName, user.lastName].join(' ') }}
+                    Full Name: {{ fullName }}
                 </p>
                 <p class="card-text">
                     Email: {{ user.email }}
                 </p>
                 <p class="card-text">
-                    Phone number: {{ user.phoneNumber }}
+                    Date of birth: {{ user.birthDate | date }}
                 </p>
-                <p class="card-text">Bank Card: {{ user.bankCard }}</p>
+                <p class="card-text">
+                    Phone number: {{ user.phoneNumber ? user.phoneNumber : 'none' }}
+                </p>
+                <p class="card-text">Bank Card: {{ user.bankCard ? user.bankCard : 'none' }}</p>
             </div>
         </div>
     </div>
