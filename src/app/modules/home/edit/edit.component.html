@@ -14,11 +14,15 @@
         </div>
         <div class="form-group">
             <label>Purchase Type</label>
-            <select formControlName="purchaseType" class="form-select" aria-label="Purchase Type select">
+            <select formControlName="purchaseType" class="form-select" (change)="selectedPurchaseType($event)" aria-label="Purchase Type select">
                 <option *ngFor="let p of purchaseTypes" [ngValue]="p">
                     {{ p }}
                 </option>
             </select>
+        </div>
+        <div class="form-group" [style.display]="(selectedTypeCash || purchase.purchaseType === 'CASH') ? 'block' : 'none'">
+            <label>Cash</label>
+            <input type="number" min="0" formControlName="cash" class="form-control">
         </div>
         <div class="form-group">
             <label>Tax Rate</label>

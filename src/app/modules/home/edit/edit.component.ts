@@ -21,6 +21,7 @@ export class EditComponent implements OnInit {
   cashiers!: User[];
   bonusCards!: BonusCard[];
   purchaseTypes: string[] = ["CASH", "CARD"];
+  selectedTypeCash: boolean = false;
 
   constructor(public activeModal: NgbActiveModal,
     private purchaseService: PurchaseService,
@@ -42,6 +43,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       total: [this.purchase.total, [Validators.required]],
+      cash: [this.purchase.cash, [Validators.nullValidator]],
       purchaseDate: [this.purchase.purchaseDate?.substring(0, 16), [Validators.required]],
       purchaseType: [this.purchase.purchaseType, [Validators.required]],
       taxRate: [this.purchase.taxRate, [Validators.required]],
@@ -50,10 +52,20 @@ export class EditComponent implements OnInit {
     });
   }
 
+  selectedPurchaseType($event: any) {
+    console.log($event)
+    if ($event.target.value.includes('CASH')) {
+      this.selectedTypeCash = true;
+    } else {
+      this.selectedTypeCash = false;
+    }
+  }
+
   edit() {
     if (this.validateForm.valid) {
       const form = this.validateForm.value;
       this.purchase.total = form.total;
+      this.purchase.cash = form.cash;
       this.purchase.purchaseDate = form.purchaseDate;
       this.purchase.purchaseType = form.purchaseType;
       this.purchase.taxRate = form.taxRate;

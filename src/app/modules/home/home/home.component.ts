@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
     this.purchaseService.getPurchases()
       .subscribe((res: Purchase[]) => {
         this.purchases = res;
+        
         // for report dashboard
         this.purchaseDates = [...new Set(res.map(p => formatDate(p.purchaseDate, 'dd/MM/yyyy', 'en-US')))];
         

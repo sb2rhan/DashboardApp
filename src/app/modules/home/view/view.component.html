@@ -8,7 +8,10 @@
             <div class="card-body">
                 <h5 class="card-title my-2">{{ purchase.id }}</h5>
                 <p class="card-text text-wrap">
-                    Total: {{ purchase.total }} with tax rate of {{ purchase.taxRate * 100 }}%
+                    Total: {{ purchase.total }}₸ with tax rate of {{ purchase.taxRate * 100 }}%
+                </p>
+                <p *ngIf="purchase.purchaseType === 'CASH'" class="card-text text-wrap">
+                    Cash paid: {{ purchase.cash }}₸, Change: {{ purchase.cash - purchase.total }}₸
                 </p>
                 <p class="card-text">
                     Date of purchase: {{ purchase.purchaseDate | date }}
