@@ -5,13 +5,15 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col" sortable="name" (sort)="onSort($event)">Category</th>
+            <th scope="col" sortable="id" (sort)="onSort($event)">Id</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let c of categories">
-            <th scope="row">{{ c.id }}</th>
+        <tr *ngFor="let c of categories;index as i">
+            <th scope="row">{{ i + 1 }}</th>
             <td>{{ c.name }}</td>
+            <td>{{ c.id }}</td>
             <td>
                 <button class="btn btn-primary" (click)="openModal('edit', c)">Edit</button>
                 <button class="btn btn-danger" (click)="deleteCategory(c.id)">Delete</button>

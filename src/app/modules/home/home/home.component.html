@@ -14,8 +14,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let p of purchases">
-                <th scope="row">{{ p.id }}</th>
+            <tr *ngFor="let p of purchases; index as i">
+                <th scope="row">{{ i + 1 }}</th>
                 <td>{{ p.total | number }}</td>
                 <td>{{ p.purchaseDate | date }}</td>
                 <td>{{ p.purchaseType }}</td>

@@ -11,8 +11,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let s of suppliers">
-            <th scope="row">{{ s.id }}</th>
+        <tr *ngFor="let s of suppliers;index as i">
+            <th scope="row">{{ i + 1 }}</th>
             <td>{{ s.name }}</td>
             <td>{{ s.address }}</td>
             <td>{{ s.phoneNumber }}</td>
