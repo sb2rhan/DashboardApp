@@ -28,10 +28,10 @@ const routes: Routes = [
     path: 'suppliers', loadChildren: () => import('./modules/supplier/supplier.module').then(m => m.SupplierModule),
     canActivate: [AuthGuardService]
   },
-  {
-    path: 'bonus-cards', loadChildren: () => import('./modules/bonus-card/bonus-card.module').then(m => m.BonusCardModule),
-    canActivate: [AuthGuardService]
-  },
+  // {
+  //   path: 'bonus-cards', loadChildren: () => import('./modules/bonus-card/bonus-card.module').then(m => m.BonusCardModule),
+  //   canActivate: [AuthGuardService]
+  // },
   { path: '**', redirectTo: '/home' }
 ];
 
