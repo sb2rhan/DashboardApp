@@ -20,10 +20,10 @@
                 <td>{{ p.purchaseDate | date }}</td>
                 <td>{{ p.purchaseType }}</td>
                 <td>{{ p.taxRate | number }}</td>
-                <td>
-                    <button class="btn btn-info" (click)="openModal('view', p)">View</button>
-                    <button class="btn btn-primary" (click)="openModal('edit', p)">Edit</button>
-                    <button type="button" (click)="deletePurchase(p.id)" class="btn btn-danger">Delete</button>
+                <td class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button class="btn btn-outline-info" (click)="openModal('view', p)">View</button>
+                    <button class="btn btn-outline-primary" (click)="openModal('edit', p)">Edit</button>
+                    <button class="btn btn-outline-danger" type="button" (click)="deletePurchase(p.id)">Delete</button>
                 </td>
             </tr>
         </tbody>

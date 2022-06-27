@@ -36,11 +36,11 @@ export class HomeComponent implements OnInit {
         this.purchases = res;
         
         // for report dashboard
-        this.purchaseDates = [...new Set(res.map(p => formatDate(p.purchaseDate, 'dd/MM/yyyy', 'en-US')))];
+        this.purchaseDates = [...new Set(res.map(p => formatDate(p.purchaseDate, 'dd/MM/yyyy', 'en-CA')))];
         
         let purchasesGroupedByDate = res.reduce((r, p) => {
           let purch = Object.assign({}, p)
-          purch.purchaseDate = formatDate(purch.purchaseDate, 'dd/MM/yyyy', 'en-US');
+          purch.purchaseDate = formatDate(purch.purchaseDate, 'dd/MM/yyyy', 'en-CA');
           r[purch.purchaseDate] = r[purch.purchaseDate] || [];
           r[purch.purchaseDate].push(purch);
           return r;
@@ -61,7 +61,6 @@ export class HomeComponent implements OnInit {
           purchaseCashTotals.push(purchasesGroupedByDate[date][0]);
           purchaseCardTotals.push(purchasesGroupedByDate[date][1]);
         });
-        // console.log(purchasesGroupedByDate);
         
         this.purchaseTotals = [
           {data: [...purchaseCashTotals], label: 'Cash'}, // cash total

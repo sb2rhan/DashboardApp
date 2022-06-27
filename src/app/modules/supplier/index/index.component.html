@@ -16,9 +16,9 @@
             <td>{{ s.name }}</td>
             <td>{{ s.address }}</td>
             <td>{{ s.phoneNumber }}</td>
-            <td>
-                <button class="btn btn-primary" (click)="openModal('edit', s)">Edit</button>
-                <button class="btn btn-danger" (click)="deleteSupplier(s.id)">Delete</button>
+            <td class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <button class="btn btn-outline-primary" (click)="openModal('edit', s)">Edit</button>
+                <button class="btn btn-outline-danger" (click)="deleteSupplier(s.id)">Delete</button>
             </td>
         </tr>
     </tbody>

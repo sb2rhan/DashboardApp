@@ -1,7 +1,17 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Dashboard</h1>
+    <select (change)="onPeriodSelected($event.target)" name="period" class="form-select mb-2 mb-md-0" style="width:auto;">
+        <option value="month" selected>
+            This month
+        </option>
+        <option value="week">
+            This week
+        </option>
+        <option value="year">
+            This year
+        </option>
+    </select>
 </div>
-
 <canvas baseChart [datasets]="barChartData" [labels]="barChartDates" [options]="barChartOptions"
     [legend]="barChartLegend" [type]="barChartType" [plugins]="barChartPlugins">
 </canvas>

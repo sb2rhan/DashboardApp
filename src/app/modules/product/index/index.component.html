@@ -22,10 +22,10 @@
             <td>{{ p.price | number }}</td>
             <td>{{ p.stockAmount | number }}</td>
             <td>{{ p.discountRate | number }}</td>
-            <td>
-                <button class="btn btn-info" (click)="openModal('view', p)">View</button>
-                <button class="btn btn-primary" (click)="openModal('edit', p)">Edit</button>
-                <button type="button" (click)="deleteProduct(p.id)" class="btn btn-danger">Delete</button>
+            <td class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <button class="btn btn-outline-info" (click)="openModal('view', p)">View</button>
+                <button class="btn btn-outline-primary" (click)="openModal('edit', p)">Edit</button>
+                <button class="btn btn-outline-danger" (click)="deleteProduct(p.id)">Delete</button>
             </td>
         </tr>
     </tbody>
