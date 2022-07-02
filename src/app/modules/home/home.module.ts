@@ -9,6 +9,7 @@ import { UserShortPipe } from 'src/app/pipes/user-short.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -16,7 +17,10 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    NgChartsModule
+    NgChartsModule,
+    TranslateModule.forChild({
+      extend: true
+    })
   ],
   declarations: [
     HomeComponent,

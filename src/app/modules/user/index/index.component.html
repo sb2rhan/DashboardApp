@@ -1,14 +1,14 @@
-<h1>Users</h1>
-<button class="btn btn-outline-success" (click)="openModal('create')">New User</button>
+<h1>{{ 'common.users' | translate }}</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">{{ 'user.addBtn' | translate }}</button>
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col" sortable="userName" (sort)="onSort($event)">User</th>
-            <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
-            <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">Phone number</th>
-            <th scope="col" sortable="birthDate" (sort)="onSort($event)">Birth Date</th>
-            <th scope="col">Action</th>
+            <th scope="col" sortable="userName" (sort)="onSort($event)">{{ 'user.name' | translate }}</th>
+            <th scope="col" sortable="email" (sort)="onSort($event)">{{ 'user.email' | translate }}</th>
+            <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">{{ 'user.phone' | translate }}</th>
+            <th scope="col" sortable="birthDate" (sort)="onSort($event)">{{ 'user.birthDate' | translate }}</th>
+            <th scope="col">{{ 'common.actions.action' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -19,9 +19,9 @@
             <td>{{ u.phoneNumber }}</td>
             <td>{{ u.birthDate | date }}</td>
             <td class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button class="btn btn-outline-info" (click)="openModal('view', u)">View</button>
-                <button class="btn btn-outline-primary" (click)="openModal('edit', u)">Edit</button>
-                <button class="btn btn-outline-danger" (click)="deleteUser(u.id)">Delete</button>
+                <button class="btn btn-outline-info" (click)="openModal('view', u)">{{ 'common.actions.view' | translate }}</button>
+                <button class="btn btn-outline-primary" (click)="openModal('edit', u)">{{ 'common.actions.edit' | translate }}</button>
+                <button class="btn btn-outline-danger" (click)="deleteUser(u.id)">{{ 'common.actions.delete' | translate }}</button>
             </td>
         </tr>
     </tbody>

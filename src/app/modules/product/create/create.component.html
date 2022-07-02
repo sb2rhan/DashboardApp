@@ -1,35 +1,35 @@
 <div class="modal-header">
-    <h4 class="modal-title">New Product</h4>
+    <h4 class="modal-title">{{ 'product.addBtn' | translate }}</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
     <form id="createForm" [formGroup]="validateForm" class="login" (ngSubmit)="create()">
         <div class="form-group">
-            <label>Barcode</label>
+            <label>{{ 'product.table.barcode' | translate }}</label>
             <input type="text" formControlName="barcode" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Name</label>
+            <label>{{ 'product.name' | translate }}</label>
             <input type="text" formControlName="name" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Description</label>
+            <label>{{ 'product.table.description' | translate }}</label>
             <textarea formControlName="description" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <label>Price(₸)</label>
-            <input type="number" formControlName="price" class="form-control" required>
+            <label>{{ 'product.table.price' | translate }}</label>
+            <input type="number" min="0" formControlName="price" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Stock Amount</label>
-            <input type="number" formControlName="stockAmount" class="form-control" required>
+            <label>{{ 'product.table.stock' | translate }}</label>
+            <input type="number" min="0" formControlName="stockAmount" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Discount Rate</label>
-            <input type="number" value="0.0" step="0.1" formControlName="discountRate" class="form-control" required>
+            <label>{{ 'product.table.discount' | translate }}</label>
+            <input type="number" max="0.9" min="0.0" value="0.0" step="0.1" formControlName="discountRate" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Category</label>
+            <label>{{ 'category.name' | translate }}</label>
             <select formControlName="categoryId" class="form-select" aria-label="Category select">
                 <option *ngFor="let c of categories" [ngValue]="c.id">
                     {{ c.name }}
@@ -37,7 +37,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Supplier</label>
+            <label>{{ 'supplier.name' | translate }}</label>
             <select formControlName="supplierId" class="form-select" aria-label="Category select">
                 <option *ngFor="let s of suppliers" [ngValue]="s.id">
                     {{ s.name }}
@@ -48,6 +48,6 @@
 
 </div>
 <div class="modal-footer">
-    <input type="submit" class="btn btn-info" form="createForm" value="Create">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <input type="submit" class="btn btn-info" form="createForm" value="{{ 'common.actions.create' | translate }}">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'common.actions.close' | translate }}</button>
 </div>

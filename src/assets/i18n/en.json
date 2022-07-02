@@ -1,0 +1,61 @@
+{
+    "navbar": {
+        "logout": "Logout"
+    },
+    "common": {
+        "dashboard": "Dashboard",
+        "products": "Products",
+        "purchases": "Purchases",
+        "categories": "Categories",
+        "suppliers": "Suppliers",
+        "users": "Users",
+        "cashier": "Cashier",
+        "actions": {
+            "action": "Action",
+            "view": "View",
+            "edit": "Edit",
+            "delete": "Delete",
+            "close": "Close",
+            "create": "Create"
+        }
+    },
+    "home": {
+        "CASH": "Cash",
+        "CARD": "Card",
+        "dashboard": {
+            "title": "Dashboard",
+            "month": "This month",
+            "week": "This week",
+            "year": "This year"
+        },
+        "purchase": {
+            "total": "Total (₸)",
+            "date": "Purchase Date",
+            "type": "Purchase Method",
+            "tax": "Tax Rate",
+            "paid": "Cash paid: {{cash}}₸, Change: {{change}}₸"
+        }
+    },
+    "product": {
+        "addBtn": "New Product",
+        "name": "Product",
+        "barcode": "Barcode",
+        "description": "Description",
+        "price": "Price",
+        "stock": "Stock Amount",
+        "discount": "Discount Rate"
+    },
+    "category": {
+        "name": "Category"
+    },
+    "supplier": {
+        "name": "Supplier"
+    },
+    "user": {
+        "name": "User",
+        "addBtn": "New User",
+        "email": "Email",
+        "phone": "Phone",
+        "birthDate": "Birth Date"
+    }
+}

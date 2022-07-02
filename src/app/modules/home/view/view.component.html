@@ -1,30 +1,28 @@
 <div class="modal-header">
-    <h4 class="modal-title">View Purchase</h4>
+    <h4 class="modal-title">{{ 'common.actions.view' | translate }}: {{ purchase.id }}</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body card mb-3">
     <div class="row g-0">
         <div class="col-md-12">
             <div class="card-body">
-                <h5 class="card-title my-3">Id: {{ purchase.id }}</h5>
                 <p class="card-text text-wrap">
-                    Total: {{ purchase.total }}₸ with tax rate of {{ purchase.taxRate * 100 }}%
+                    {{ 'home.purchase.total' | translate }}: {{ purchase.total }}₸, {{ 'home.purchase.tax' | translate }}: {{ purchase.taxRate * 100 }}%
                 </p>
                 <p *ngIf="purchase.purchaseType === 'CASH'" class="card-text text-wrap">
-                    Cash paid: {{ purchase.cash }}₸, Change: {{ purchase.cash - purchase.total }}₸
+                    {{ 'home.purchase.paid' | translate: { cash: purchase.cash, change: (purchase.cash - purchase.total) } }}
                 </p>
                 <p class="card-text">
-                    Date of purchase: {{ purchase.purchaseDate | date }}
+                    {{ 'home.purchase.date' | translate }}: {{ purchase.purchaseDate | date }}
                 </p>
                 <p class="card-text">
-                    <!-- Used Bonus card: {{ purchase.bonusCardId ? purchase.bonusCardId : 'none' }},  -->
-                    Method of payment: {{ purchase.purchaseType }}
+                    {{ 'home.purchase.type' | translate }}: {{ 'home.' + purchase.purchaseType | translate }}
                 </p>
-                <p class="card-text text-bold">Cashier: {{ user | userShort }}</p>
+                <p class="card-text text-bold">{{ 'common.cashier' | translate }}: {{ user | userShort }}</p>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'common.actions.close' | translate }}</button>
 </div>

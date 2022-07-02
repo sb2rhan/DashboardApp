@@ -1,16 +1,16 @@
-<h1>Products</h1>
-<button class="btn btn-outline-success" (click)="openModal('create')">New Product</button>
+<h1>{{ 'common.products' | translate }}</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">{{ 'product.addBtn' | translate }}</button>
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col" sortable="barcode" (sort)="onSort($event)">Barcode</th>
-            <th scope="col" sortable="name" (sort)="onSort($event)">Product</th>
-            <th scope="col" sortable="description" (sort)="onSort($event)">Description</th>
-            <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
-            <th scope="col" sortable="stockAmount" (sort)="onSort($event)">Stock Amount</th>
-            <th scope="col" sortable="discountRate" (sort)="onSort($event)">Discount Rate</th>
-            <th scope="col">Action</th>
+            <th scope="col" sortable="barcode" (sort)="onSort($event)">{{ 'product.barcode' | translate }}</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">{{ 'product.name' | translate }}</th>
+            <th scope="col" sortable="description" (sort)="onSort($event)">{{ 'product.description' | translate }}</th>
+            <th scope="col" sortable="price" (sort)="onSort($event)">{{ 'product.price' | translate }}</th>
+            <th scope="col" sortable="stockAmount" (sort)="onSort($event)">{{ 'product.stock' | translate }}</th>
+            <th scope="col" sortable="discountRate" (sort)="onSort($event)">{{ 'product.discount' | translate }}</th>
+            <th scope="col">{{ 'common.actions.action' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +19,13 @@
             <td>{{ p.barcode }}</td>
             <td>{{ p.name }}</td>
             <td>{{ p.description }}</td>
-            <td>{{ p.price | number }}</td>
+            <td>{{ p.price | number }}₸</td>
             <td>{{ p.stockAmount | number }}</td>
-            <td>{{ p.discountRate | number }}</td>
+            <td>{{ (p.discountRate * 100) | number }}%</td>
             <td class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button class="btn btn-outline-info" (click)="openModal('view', p)">View</button>
-                <button class="btn btn-outline-primary" (click)="openModal('edit', p)">Edit</button>
-                <button class="btn btn-outline-danger" (click)="deleteProduct(p.id)">Delete</button>
+                <button class="btn btn-outline-info" (click)="openModal('view', p)">{{ 'common.actions.view' | translate }}</button>
+                <button class="btn btn-outline-primary" (click)="openModal('edit', p)">{{ 'common.actions.edit' | translate }}</button>
+                <button class="btn btn-outline-danger" (click)="deleteProduct(p.id)">{{ 'common.actions.delete' | translate }}</button>
             </td>
         </tr>
     </tbody>

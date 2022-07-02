@@ -1,16 +1,16 @@
 <app-dashboard [barChartDates]="purchaseDates" [barChartData]="purchaseTotals"></app-dashboard>
 
-<h2>Purchases</h2>
+<h2>{{ 'common.purchases' | translate }}</h2>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col" sortable="total" (sort)="onSort($event)">Total(₸)</th>
-                <th scope="col" sortable="purchaseDate" (sort)="onSort($event)">Purchase Date</th>
-                <th scope="col" sortable="purchaseType" (sort)="onSort($event)">Type</th>
-                <th scope="col" sortable="taxRate" (sort)="onSort($event)">Tax Rate</th>
-                <th scope="col">Action</th>
+                <th scope="col" sortable="total" (sort)="onSort($event)">{{ 'home.purchase.total' | translate }}</th>
+                <th scope="col" sortable="purchaseDate" (sort)="onSort($event)">{{ 'home.purchase.date' | translate }}</th>
+                <th scope="col" sortable="purchaseType" (sort)="onSort($event)">{{ 'home.purchase.type' | translate }}</th>
+                <th scope="col" sortable="taxRate" (sort)="onSort($event)">{{ 'home.purchase.tax' | translate }}</th>
+                <th scope="col">{{ 'common.actions.action' | translate }}</th>
             </tr>
         </thead>
         <tbody>
@@ -18,12 +18,12 @@
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ p.total | number }}</td>
                 <td>{{ p.purchaseDate | date }}</td>
-                <td>{{ p.purchaseType }}</td>
+                <td>{{ 'home.'+p.purchaseType | translate }}</td>
                 <td>{{ p.taxRate | number }}</td>
                 <td class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button class="btn btn-outline-info" (click)="openModal('view', p)">View</button>
-                    <button class="btn btn-outline-primary" (click)="openModal('edit', p)">Edit</button>
-                    <button class="btn btn-outline-danger" type="button" (click)="deletePurchase(p.id)">Delete</button>
+                    <button class="btn btn-outline-info" (click)="openModal('view', p)">{{ 'common.actions.view' | translate }}</button>
+                    <button class="btn btn-outline-primary" (click)="openModal('edit', p)">{{ 'common.actions.edit' | translate }}</button>
+                    <button class="btn btn-outline-danger" type="button" (click)="deletePurchase(p.id)">{{ 'common.actions.delete' | translate }}</button>
                 </td>
             </tr>
         </tbody>

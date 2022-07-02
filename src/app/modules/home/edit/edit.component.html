@@ -1,19 +1,19 @@
 <div class="modal-header">
-    <h4 class="modal-title">Edit Purchase</h4>
+    <h4 class="modal-title">{{ 'common.actions.edit' | translate }}</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
     <form id="editForm" [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
         <div class="form-group">
-            <label>Total</label>
+            <label>{{ 'home.purchase.total' | translate }}</label>
             <input type="number" min="0" formControlName="total" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Purchase Date</label>
+            <label>{{ 'home.purchase.date' | translate }}</label>
             <input type="datetime-local" formControlName="purchaseDate" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Purchase Type</label>
+            <label>{{ 'home.purchase.type' | translate }}</label>
             <select formControlName="purchaseType" class="form-select" (change)="selectedPurchaseType($event)" aria-label="Purchase Type select">
                 <option *ngFor="let p of purchaseTypes" [ngValue]="p">
                     {{ p }}
@@ -21,15 +21,15 @@
             </select>
         </div>
         <div class="form-group" [style.display]="(selectedTypeCash || purchase.purchaseType === 'CASH') ? 'block' : 'none'">
-            <label>Cash</label>
+            <label>{{ 'home.CASH' | translate }}</label>
             <input type="number" min="0" formControlName="cash" class="form-control">
         </div>
         <div class="form-group">
-            <label>Tax Rate</label>
+            <label>{{ 'home.purchase.tax' | translate }}</label>
             <input type="number" step="0.01" min="0" max="0.5" formControlName="taxRate" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Cashier</label>
+            <label>{{ 'common.cashier' | translate }}</label>
             <select formControlName="cashierId" class="form-select" aria-label="Category select">
                 <option *ngFor="let c of cashiers" [ngValue]="c.id">
                     {{ c | userShort }}
@@ -50,5 +50,5 @@
 </div>
 <div class="modal-footer">
     <input type="submit" class="btn btn-info" form="editForm" value="Edit">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'common.actions.close' | translate }}</button>
 </div>

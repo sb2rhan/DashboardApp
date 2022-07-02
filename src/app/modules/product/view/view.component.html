@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">View Product</h4>
+    <h5 class="modal-title">{{ 'common.actions.view' | translate }}: {{ product.id }}</h5>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body card mb-3">
@@ -8,18 +8,17 @@
             <div class="card-body">
                 <h5 class="card-title my-2">{{ product.name }} ({{ product.barcode }})</h5>
                 <p class="card-text text-wrap">
-                    {{ product.description }}<br>
-                    Id: {{ product.id }}
+                    {{ product.description }}
                 </p>
                 <p class="card-text">
-                    Stock Amount: {{ product.stockAmount }},
-                    Discount Rate: {{ product.discountRate }}
+                    {{ 'product.stock' | translate }}: {{ product.stockAmount }},
+                    {{ 'product.discount' | translate }}: {{ product.discountRate }}
                 </p>
-                <p class="card-text text-bold">Price: {{ product.price }}₸</p>
+                <p class="card-text text-bold">{{ 'product.price' | translate }}: {{ product.price }}₸</p>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'common.actions.close' | translate }}</button>
 </div>
