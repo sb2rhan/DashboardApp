@@ -17,7 +17,7 @@
             <td>{{ u.userName }}</td>
             <td>{{ u.email }}</td>
             <td>{{ u.phoneNumber }}</td>
-            <td>{{ u.birthDate | date }}</td>
+            <td>{{ u.birthDate | date: 'dd/MM/yyyy' }}</td>
             <td class="d-grid gap-2 d-md-flex justify-content-md-start">
                 <button class="btn btn-outline-info" (click)="openModal('view', u)">{{ 'common.actions.view' | translate }}</button>
                 <button class="btn btn-outline-primary" (click)="openModal('edit', u)">{{ 'common.actions.edit' | translate }}</button>

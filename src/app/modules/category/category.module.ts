@@ -7,13 +7,17 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { SortableDirective } from './sortable.directive';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
   imports: [
     CommonModule,
     CategoryRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      extend: true
+    })
   ],
   declarations: [
     IndexComponent,

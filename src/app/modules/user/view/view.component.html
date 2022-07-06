@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">User {{ user.userName }}</h4>
+    <h4 class="modal-title">{{ 'user.name' | translate }}: {{ user.userName }}</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body card mb-3">
@@ -7,23 +7,23 @@
         <div class="col-md-12">
             <div class="card-body">
                 <p class="card-text text-wrap">
-                    Full Name: {{ fullName }}
+                    {{ 'user.fullName' | translate }}: {{ fullName }}
                 </p>
                 <p class="card-text">
-                    Email: {{ user.email }}<br>
+                    {{ 'user.email' | translate }}: {{ user.email }}<br>
                     Id: {{ user.id }}
                 </p>
                 <p class="card-text">
-                    Date of birth: {{ user.birthDate | date }}
+                    {{ 'user.birthDate' | translate }}: {{ user.birthDate | date: 'dd/MM/yyyy' }}
                 </p>
                 <p class="card-text">
-                    Phone number: {{ user.phoneNumber ? user.phoneNumber : 'none' }}
+                    {{ 'user.phone' | translate }}: {{ user.phoneNumber ? user.phoneNumber : 'common.none' | translate }}
                 </p>
-                <p class="card-text">Bank Card: {{ user.bankCard ? user.bankCard : 'none' }}</p>
+                <p class="card-text">{{ 'user.bankCard' | translate }}: {{ user.bankCard ? user.bankCard : 'common.none' | translate }}</p>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'common.actions.close' | translate }}</button>
 </div>

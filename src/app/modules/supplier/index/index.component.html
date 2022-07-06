@@ -1,13 +1,13 @@
-<h1>Suppliers</h1>
-<button class="btn btn-outline-success" (click)="openModal('create')">New Supplier</button>
+<h1>{{ 'common.suppliers' | translate }}</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">{{ 'supplier.addBtn' | translate }}</button>
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col" sortable="name" (sort)="onSort($event)">Supplier</th>
-            <th scope="col" sortable="address" (sort)="onSort($event)">Address</th>
-            <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">Phone Number</th>
-            <th scope="col">Action</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">{{ 'supplier.name' | translate }}</th>
+            <th scope="col" sortable="address" (sort)="onSort($event)">{{ 'supplier.address' | translate }}</th>
+            <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">{{ 'supplier.phone' | translate }}</th>
+            <th scope="col">{{ 'common.actions.action' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -17,8 +17,8 @@
             <td>{{ s.address }}</td>
             <td>{{ s.phoneNumber }}</td>
             <td class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button class="btn btn-outline-primary" (click)="openModal('edit', s)">Edit</button>
-                <button class="btn btn-outline-danger" (click)="deleteSupplier(s.id)">Delete</button>
+                <button class="btn btn-outline-primary" (click)="openModal('edit', s)">{{ 'common.actions.edit' | translate }}</button>
+                <button class="btn btn-outline-danger" (click)="deleteSupplier(s.id)">{{ 'common.actions.delete' | translate }}</button>
             </td>
         </tr>
     </tbody>

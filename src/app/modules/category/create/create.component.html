@@ -1,17 +1,17 @@
 <div class="modal-header">
-    <h4 class="modal-title">New Category</h4>
+    <h4 class="modal-title">{{ 'category.addBtn' | translate }}</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
     <form id="createForm" [formGroup]="validateForm" class="login" (ngSubmit)="create()">
         <div class="form-group">
-            <label>Name</label>
+            <label>{{ 'category.name' | translate }}</label>
             <input type="text" formControlName="name" class="form-control" required>
         </div>
     </form>
 
 </div>
 <div class="modal-footer">
-    <input type="submit" class="btn btn-info" form="createForm" value="Create">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <input type="submit" class="btn btn-info" form="createForm" value="{{ 'common.actions.create' | translate }}">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'common.actions.close' | translate }}</button>
 </div>

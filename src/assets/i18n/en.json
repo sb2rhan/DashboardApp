@@ -3,6 +3,7 @@
         "logout": "Logout"
     },
     "common": {
+        "none": "None",
         "dashboard": "Dashboard",
         "products": "Products",
         "purchases": "Purchases",
@@ -46,16 +47,34 @@
         "discount": "Discount Rate"
     },
     "category": {
-        "name": "Category"
+        "name": "Category",
+        "addBtn": "New Category"
     },
     "supplier": {
-        "name": "Supplier"
+        "name": "Supplier",
+        "addBtn": "New Supplier",
+        "address": "Address",
+        "phone": "Phone Number"
     },
     "user": {
         "name": "User",
         "addBtn": "New User",
+        "type": {
+            "label": "User Type",
+            "Admin": "Administrator",
+            "Cashier": "Cashier",
+            "Customer": "Customer"
+        },
+        "username": "Username",
+        "fullName": "Full Name",
+        "firstName": "First Name",
+        "middleName": "Middle Name",
+        "lastName": "Last Name",
         "email": "Email",
         "phone": "Phone",
-        "birthDate": "Birth Date"
+        "password": "Password",
+        "newPassword": "New Password (leave it blank to not change it)",
+        "birthDate": "Birth Date",
+        "bankCard": "Bank Card"
     }
 }

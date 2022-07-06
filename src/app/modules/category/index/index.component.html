@@ -1,12 +1,12 @@
-<h1>Categories</h1>
-<button class="btn btn-outline-success" (click)="openModal('create')">New Category</button>
+<h1>{{ 'common.categories' | translate }}</h1>
+<button class="btn btn-outline-success" (click)="openModal('create')">{{ 'category.addBtn' | translate }}</button>
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col" sortable="name" (sort)="onSort($event)">Category</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">{{ 'category.name' | translate }}</th>
             <th scope="col" sortable="id" (sort)="onSort($event)">Id</th>
-            <th scope="col">Action</th>
+            <th scope="col">{{ 'common.actions.action' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -15,8 +15,8 @@
             <td>{{ c.name }}</td>
             <td>{{ c.id }}</td>
             <td class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button class="btn btn-outline-primary" (click)="openModal('edit', c)">Edit</button>
-                <button class="btn btn-outline-danger" (click)="deleteCategory(c.id)">Delete</button>
+                <button class="btn btn-outline-primary" (click)="openModal('edit', c)">{{ 'common.actions.edit' | translate }}</button>
+                <button class="btn btn-outline-danger" (click)="deleteCategory(c.id)">{{ 'common.actions.delete' | translate }}</button>
             </td>
         </tr>
     </tbody>
