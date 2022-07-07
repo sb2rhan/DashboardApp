@@ -19,6 +19,19 @@
         </div>
     </div>
 </header>
+<header *ngIf="!isLoggedIn" class="navbar navbar-light px-4 flex-md-nowrap flex-row-reverse p-0 shadow">
+    <div class="navbar-nav">
+        <div class="nav-item" ngbDropdown>
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownLanguage" role="button">
+                {{ currentLanguage }}
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdownLanguage" class="position-absolute dropdown-menu dropdown-menu-end">
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault(); useLanguage('en')">English</a>
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault(); useLanguage('ru')">Русский</a>
+            </div>
+        </div>
+    </div>
+</header>
 
 <!-- Loader -->
 <div *ngIf="loaderService.isLoading | async" class="spinner-wrapper">

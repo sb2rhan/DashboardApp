@@ -5,7 +5,7 @@
 <div class="modal-body">
     <form id="editForm" [formGroup]="validateForm" class="login" (ngSubmit)="edit()">
         <div class="form-group">
-            <label>{{ 'user.username' | translate }}</label>
+            <label>{{ 'user.auth.username' | translate }}</label>
             <input type="text" formControlName="userName" class="form-control" required>
         </div>
         <div class="form-group">

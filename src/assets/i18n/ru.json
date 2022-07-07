@@ -17,7 +17,8 @@
             "edit": "Править",
             "delete": "Удалить",
             "close": "Закрыть",
-            "create": "Создать"
+            "create": "Создать",
+            "signin": "Войти"
         }
     },
     "home": {
@@ -65,14 +66,19 @@
             "Cashier": "Кассир",
             "Customer": "Покупатель"
         },
-        "username": "Имя пользователя",
+        "auth": {
+            "title": "StoreSystem Панель",
+            "direction": "Пожалуйста войдите в свой аккаунт",
+            "forgot": "Забыли пароль?",
+            "username": "Имя пользователя",
+            "password": "Пароль"
+        },
         "fullName": "ФИО",
         "firstName": "Имя",
         "middleName": "Отчество",
         "lastName": "Фамилия",
         "email": "Email почта",
         "phone": "Телефон номер",
-        "password": "Пароль",
         "newPassword": "Новый пароль (оставьте пустым чтобы не изменять)",
         "birthDate": "Дата рождения",
         "bankCard": "Банк. карта"

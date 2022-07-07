@@ -17,7 +17,8 @@
             "edit": "Edit",
             "delete": "Delete",
             "close": "Close",
-            "create": "Create"
+            "create": "Create",
+            "signin": "Sign In"
         }
     },
     "home": {
@@ -65,14 +66,19 @@
             "Cashier": "Cashier",
             "Customer": "Customer"
         },
-        "username": "Username",
+        "auth": {
+            "title": "StoreSystem Dashboard",
+            "direction": "Sign into your account",
+            "forgot": "Forgot password?",
+            "username": "Username",
+            "password": "Password"
+        },
         "fullName": "Full Name",
         "firstName": "First Name",
         "middleName": "Middle Name",
         "lastName": "Last Name",
         "email": "Email",
         "phone": "Phone",
-        "password": "Password",
         "newPassword": "New Password (leave it blank to not change it)",
         "birthDate": "Birth Date",
         "bankCard": "Bank Card"

@@ -1,4 +1,6 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { Component, OnInit, PipeTransform, QueryList, ViewChildren } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateComponent } from '../create/create.component';
 import { EditComponent } from '../edit/edit.component';
@@ -7,12 +9,16 @@ import { ProductService } from '../product.service';
 import { SortableDirective, SortEvent } from '../sortable.directive';
 import { ViewComponent } from '../view/view.component';
 
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  styleUrls: ['./index.component.css'],
+  providers: [DecimalPipe]
 })
 export class IndexComponent implements OnInit {
 
@@ -20,7 +26,10 @@ export class IndexComponent implements OnInit {
 
   @ViewChildren(SortableDirective) headers!: QueryList<SortableDirective>;
 
-  constructor(private productService: ProductService, private modalService: NgbModal) {
+  products$!: Observable<Product[]>;
+  filter = new FormControl('');
+
+  constructor(private productService: ProductService, private modalService: NgbModal, private pipe: DecimalPipe) {
     this.refreshProducts();
   }
 
@@ -28,6 +37,10 @@ export class IndexComponent implements OnInit {
     this.productService.getProducts()
       .subscribe((res: Product[]) => {
         this.products = res;
+        this.products$ = this.filter.valueChanges.pipe(
+          startWith(''),
+          map(text => this.search(text, this.pipe))
+        );
       })
   }
 
@@ -55,6 +68,15 @@ export class IndexComponent implements OnInit {
         return direction === 'asc' ? res : -res;
       });
     }
+  }
+
+  search(text: string, pipe: PipeTransform): Product[] {
+    return this.products.filter(p => {
+      const term = text.toLowerCase();
+      return p.name.toLowerCase().includes(term)
+          || pipe.transform(p.barcode).includes(term)
+          || p.description.toLowerCase().includes(term);
+    });
   }
 
   openModal(operation: string, product?: Product) {
