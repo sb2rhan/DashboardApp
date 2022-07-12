@@ -1,5 +1,17 @@
 <h1>{{ 'common.users' | translate }}</h1>
-<button class="btn btn-outline-success" (click)="openModal('create')">{{ 'user.addBtn' | translate }}</button>
+
+<div class="d-flex justify-content-between align-items-center">
+    <button class="btn btn-outline-success" (click)="openModal('create')">{{ 'user.addBtn' | translate }}</button>
+    <form>
+        <div class="mb-3 row">
+            <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">User search:</label>
+            <div class="col-xs-3 col-sm-auto">
+                <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+            </div>
+        </div>
+    </form>
+</div>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -12,11 +24,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let u of users;index as i">
+        <tr *ngFor="let u of users$ | async; index as i">
             <th scope="row">{{ i + 1 }}</th>
-            <td>{{ u.userName }}</td>
-            <td>{{ u.email }}</td>
-            <td>{{ u.phoneNumber }}</td>
+            <td><ngb-highlight [result]="u.userName" [term]="filter.value"></ngb-highlight></td>
+            <td><ngb-highlight [result]="u.email" [term]="filter.value"></ngb-highlight></td>
+            <td><ngb-highlight [result]="u.phoneNumber" [term]="filter.value"></ngb-highlight></td>
             <td>{{ u.birthDate | date: 'dd/MM/yyyy' }}</td>
             <td class="d-grid gap-2 d-md-flex justify-content-md-start">
                 <button class="btn btn-outline-info" (click)="openModal('view', u)">{{ 'common.actions.view' | translate }}</button>

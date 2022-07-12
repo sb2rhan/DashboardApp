@@ -9,6 +9,7 @@ import { SortableDirective } from './sortable.directive';
 import { ViewComponent } from './view/view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     TranslateModule.forChild({
       extend: true
-    })
+    }),
+    NgbModule
   ],
   declarations: [
     IndexComponent,
